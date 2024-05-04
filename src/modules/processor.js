@@ -30,7 +30,7 @@ class Processor {
         const callerId = global.callerId;
 
         const result = await repo.messageBoxRepo.allocateMessage(batchSize, batchTimeWindowLimit, pollerLockTimeout,callerId);
-
+        console.log("", result);
         result?.forEach(row => {
             if (global.socket) {
                 global.socket.send(JSON.stringify({id: row["id"], message: row["message"], acquiredAt: row["acquired_at"]}));

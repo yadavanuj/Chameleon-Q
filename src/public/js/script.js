@@ -5,7 +5,8 @@ socket.onopen = function (e) {
 };
 
 socket.onmessage = function (event) {
-	console.log('', event);
+	console.log('', event.data);
+	ServerPresenter.render(event.data);
 };
 
 socket.onclose = function (event) {

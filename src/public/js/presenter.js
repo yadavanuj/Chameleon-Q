@@ -11,6 +11,19 @@ function createCell(content, processBy) {
     return div;
 }
 
+function createCell2(id, acquiredAt) {
+    let div = document.createElement("div");
+    div.classList.add("m-1");
+    div.classList.add("p-1");
+    div.classList.add("rounded");
+    div.classList.add("w-100");
+
+    let text = document.createTextNode(`ID: ${id} | Acquired At: ${acquiredAt}`);
+    div.appendChild(text);
+
+    return div;
+}
+
 let ClientPresenter = (function(){
     let clientResultArea = document.querySelector('#result-inner-client');
     
@@ -22,6 +35,16 @@ let ClientPresenter = (function(){
     }
 })();
 
+let ServerPresenter = (function(){
+    let serverResultArea = document.querySelector('#result-inner-client');
+    
+    return {
+        render: function(packet){
+            let div = createCell2(packet.id, packet.acquiredAt);
+            serverResultArea.appendChild(div);
+        }
+    }
+})();
 
 // Initial View
 (function() {
