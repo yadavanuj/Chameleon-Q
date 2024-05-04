@@ -1,0 +1,51 @@
+{{> header}}
+    <div class="container-fluid" id="generate-messages">
+        <main class="container-fluid">
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="outer-1 p-4 rounded">
+                            <div class="display-6 mb-4">Generate Messages</div>
+                            {{> createMessage}}
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="outer-3 p-4 rounded h-100">
+                            <div class="display-6 mb-6">Client</div>
+                            <div><span class="fs-6" id="client-id"></span></div>
+                            <div id="result" class="h-75 mt-4">
+                                <div class="h-100 overflow-scroll bg-dark" id="result-inner-client">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-3">
+                        <div class="outer-2 p-4 rounded h-100">
+                            <div class="display-6 mb-6">Server</div>
+                            <div id="result" class="h-75 mt-4">
+                                <div class="h-100 overflow-scroll bg-dark" id="result-inner-server">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-3">
+                        <div class="outer-4 p-4 rounded h-100">
+                            <div class="display-6 mb-6">Queue</div>
+                            <div id="result" class="h-75 mt-4">
+                                <div class="h-100 overflow-scroll bg-dark" id="result-inner-server">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+          </main>
+    </div>
+    
+{{> end }}

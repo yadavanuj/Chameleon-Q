@@ -1,0 +1,16 @@
+<div class="mb-4">
+    <label for="messageCount" class="form-label">Message Count</label>
+    <input type="number" class="form-control" id="messageCountInput" aria-describedby="messageCountHelp" min="1" max="10" value="5">
+    <div id="messageCountHelp" class="form-text">Number of messages to be generated</div>
+</div>
+<div class="mb-4">
+    <label for="processAfterSeconds" class="form-label">Process After Seconds</label>
+    <input type="number" class="form-control" id="processAfterSecondsInput" aria-describedby="processAfterSecondsHelp" min="1" max="60">
+    <div id="processAfterSecondsHelp" class="form-text">Generated Messages Will Be Picked For Processing After Specified Time</div>
+</div>
+<button type="button" class="btn btn-secondary" id="btn-generate">Submit</button>
+
+<div class="mt-5">
+    <button type="button" class="btn btn-danger" id="btn-stop">Stop Processing</button>
+    <button type="button" class="btn btn-success" id="btn-start">Start Processing</button>
+</div>
