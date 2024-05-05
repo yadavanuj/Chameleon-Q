@@ -21,12 +21,6 @@ function generateUUID() {
 	});
 }
 
-// let Host = '://localhost:9000';
-// let Protocols = Object.freeze({
-// 	HTTP: 'http',
-// 	WS: 'ws',
-// });
-// let ClientId = generateUUID();
 
 Window.chameleon = {
     Host: '://localhost:9000',

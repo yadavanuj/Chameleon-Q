@@ -1,35 +1,64 @@
-function createCell(content, processBy) {
-    let div = document.createElement("div");
-    div.classList.add("m-1");
-    div.classList.add("p-1");
-    div.classList.add("rounded");
-    div.classList.add("w-100");
+var IsIt = (function () {
+	return {
+		func: function (param) {
+			return typeof param === 'function';
+		},
+		defined: function (param) {
+			return param ? true : false;
+		},
+		array: function (param) {
+			return Object.prototype.toString.call(param) === '[object Array]'
+				? true
+				: false;
+		},
+		emptyArray: function (param) {
+			return this.array(param) && param.length === 0 ? true : false;
+		},
+		nonEmptyArray: function (param) {
+			return this.array(param) && param.length !== 0 ? true : false;
+		},
+		string: function (param) {
+			return typeof param === 'string' ? true : false;
+		},
+		number: function (param) {
+			return typeof param === 'number' ? true : false;
+		},
+		undefined: function (param) {
+			return typeof param === 'undefined' ? true : false;
+		},
+		object: function (param) {
+			return typeof param === 'object' ? true : false;
+		},
+	};
+})();
 
-    let text = document.createTextNode(`Message: ${content} | Process By: ${processBy}`);
-    div.appendChild(text);
+var Breeze = (function () {
+	return {
+		createBlock: function (tag, classes, textProvider) {
+			let element = document.createElement(tag);
+			if (element && IsIt.array(classes)) {
+				classes.forEach((clazz) => {
+					element.classList.add('' + clazz);
+				});
+			}
 
-    return div;
-}
-
-function createCell2(id, acquiredAt) {
-    let div = document.createElement("div");
-    div.classList.add("m-1");
-    div.classList.add("p-1");
-    div.classList.add("rounded");
-    div.classList.add("w-100");
-
-    let text = document.createTextNode(`ID: ${id} | Acquired At: ${acquiredAt}`);
-    div.appendChild(text);
-
-    return div;
-}
+			if (element && IsIt.func(textProvider)) {
+				let text = document.createTextNode(textProvider());
+				element.appendChild(text);
+			} 
+			return element;
+		}
+	};
+})();
 
 let ClientPresenter = (function(){
     let clientResultArea = document.querySelector('#result-inner-client');
     
     return {
         render: function(packet){
-            let div = createCell(packet.message.data.content, packet.message.data.processBy);
+            let classes = ['m-1', 'p-1', 'rounded', 'w-100'];
+            let textProvider = () => { return `Message: ${packet.message.data.content} | Process By: ${packet.message.data.processBy}`;}
+            let div = Breeze.createBlock('div', classes, textProvider);
             clientResultArea.appendChild(div);
         }
     }
@@ -40,7 +69,9 @@ let ServerPresenter = (function(){
     
     return {
         render: function(packet){
-            let div = createCell2(packet.id, packet.acquiredAt);
+            let classes = ['m-1', 'p-1', 'rounded', 'w-100'];
+            let textProvider = () => { return `ID: ${packet.id} | Acquired At: ${packet.acquiredAt}`;}
+            let div = Breeze.createBlock('div', classes, textProvider);
             serverResultArea.appendChild(div);
         }
     }
